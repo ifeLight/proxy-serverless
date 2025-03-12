@@ -1,0 +1,14 @@
+{
+  "name": "cors-proxy-express",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cors-anywhere": "^0.4.4",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2",
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^3.0.3",
+    "serverless-http": "^3.2.0"
+  }
+}
