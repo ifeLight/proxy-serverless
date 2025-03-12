@@ -31,23 +31,25 @@ app.use((req, res, next) => {
 
   console.log(`Proxying request to ${target}`);
 
-  // proxy.web(req, res, {
-  //   target: target,
-  //   changeOrigin: true, // Crucial for CORS
-  //   secure: false, // If your target uses self-signed certificates, set to false.
-  //   ws: false, // If your target is a WebSocket, set to true.
-  //   ignorePath: true, // If your target expects a path, set to false.
-  // }, (err) => {
-  //   console.error("Proxy error:", err);
-  //   res.status(500).send("Proxy error.");
-  // });
-  httpProxyMiddleware.createProxyMiddleware({
+  proxy.web(req, res, {
     target: target,
     changeOrigin: true, // Crucial for CORS
     secure: false, // If your target uses self-signed certificates, set to false.
     ws: false, // If your target is a WebSocket, set to true.
     ignorePath: true, // If your target expects a path, set to false.
-  })(req, res, next);
+  }, (err) => {
+    console.error("Proxy error:", err);
+    res.status(500).send("Proxy error.");
+  });
+
+
+  // httpProxyMiddleware.createProxyMiddleware({
+  //   target: target,
+  //   changeOrigin: true, // Crucial for CORS
+  //   secure: false, // If your target uses self-signed certificates, set to false.
+  //   ws: false, // If your target is a WebSocket, set to true.
+  //   ignorePath: true, // If your target expects a path, set to false.
+  // })(req, res, next);
 });
 
 exports.handler = serverless(app);
